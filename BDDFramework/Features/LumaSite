@@ -1,0 +1,49 @@
+Feature:  I want to login into the site with valid and invalid data
+
+   Background:
+
+       Given I navigate to the Website
+
+   Scenario: Login as a new sign-up user with valid data
+
+       When I entered a valid credential
+
+           | email                    | validpassword |
+
+           | putumamngqandazi@gmail.com | 12345         |
+
+       When the user clicks on the sign-in button
+
+       Then Validate the title after login
+
+   Scenario: Login with invalid data by entering an invalid password
+
+       When I entered an invalid credential
+           | email                    | invalidpassword |
+           | putumamngqandazi@gmail.com | 123456    |
+       When the user clicks on the sign-in button
+
+       Then Error message should display
+                  | errormessage          |
+                  | Authentication failed |
+
+       Given I add Items to cart
+       When Item is Radiant Tee
+       Then Select size
+       And Add to cart
+
+        Given I add Items to cart
+              When Item is Breath-Easy Tank
+              Then Select size
+              And Add to cart
+
+              Given I add Items to cart
+                            When Item is Argus-All weather Tank
+                            Then Select size
+                            And Add to cart
+
+        SignIn               |   Add selected Items    |Size
+   With valid credentials    |  Radiant Tee            |XM
+   With Invalid credentials  |  Breath-Easy Tank       |S
+                             |  Argus-All weather Tank |L/XL
+
